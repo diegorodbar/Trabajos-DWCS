@@ -29,6 +29,9 @@ if (!empty($_POST['nombre'])) {
 // Verificar si se ha solicitado limpiar la agenda
 if (isset($_GET['limpiar']) && $_GET['limpiar'] == '1') {
     $agenda = [];
+    // Solución propuesta: 
+    header("Location: " . $_SERVER['PHP_SELF']); 
+    exit; 
 }
 ?>
 
