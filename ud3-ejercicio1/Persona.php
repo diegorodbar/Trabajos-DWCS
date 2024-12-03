@@ -205,7 +205,7 @@ class Conserje extends Persona {
             $persona['sexo'],
             $aniosServicio
         );
-    }
+    } 
 
     // Método heredado de la clase Persona que devuelve el número de objetos creados
 
