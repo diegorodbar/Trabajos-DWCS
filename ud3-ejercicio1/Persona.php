@@ -560,63 +560,22 @@ class AlumnoFP extends Persona {
 
 // Script para crear 100 objetos aleatorios generando un número aleatorio para determinar la clase (1: Administrativo, 2: Profesorado, 3: Conserje, etc.)
 
-for ($i = 0; $i < 100; $i++) {
+$tiposClases = ["Administrativo", "Profesorado", "Conserje", "AlumnoESO", "AlumnoBachillerato", "AlumnoFP", "PersonalLimpieza"];
 
-    $claseAleatoria = rand(1, 7); //
-    
-    switch ($claseAleatoria) {
-        case 1:
-            $admin = Administrativo::generarAlAzar();
-            echo $admin->__toString() . PHP_EOL;
-            echo $admin->trabajar() . PHP_EOL;
-            echo "\n";
-            break;
-        case 2:
-            $prof = Profesorado::generarAlAzar();
-            echo $prof->__toString() . PHP_EOL;
-            echo $prof->trabajar() . PHP_EOL;
-            echo "\n";
-            break;
-        case 3:
-            $cons = Conserje::generarAlAzar();
-            echo $cons->__toString() . PHP_EOL;
-            echo $cons->trabajar() . PHP_EOL;
-            echo "\n";
-            break;
-        case 4:
-            $eso = AlumnoESO::generarAlAzar();
-            echo $eso->__toString() . PHP_EOL;
-            echo $eso->trabajar() . PHP_EOL;
-            echo "\n";
-            break;
-        case 5:
-            $bach = AlumnoBachillerato::generarAlAzar();
-            echo $bach->__toString() . PHP_EOL;
-            echo $bach->trabajar() . PHP_EOL;
-            echo "\n"; 
-            break;
-        case 6:
-            $fp = AlumnoFP::generarAlAzar();
-            echo $fp->__toString() . PHP_EOL;
-            echo $fp->trabajar() . PHP_EOL;
-            echo "\n";
-            break;
-        case 7:
-            $limp = PersonalLimpieza::generarAlAzar();
-            echo $limp->__toString() . PHP_EOL;
-            echo $limp->trabajar() . PHP_EOL;
-            echo "\n";
-            break;
-    }
+$objetos = [];
+for ($i = 0; $i < 100; $i++) {
+    $tipo = array_rand((array_flip($tiposClases)));
+    $objetos[] = $tipo::generarAlAzar();
 }
 
-echo "Objetos de Administrativo creados: " . Administrativo::numeroObjetosCreado() . PHP_EOL;
-echo "Objetos de Profesorado creados: " . Profesorado::numeroObjetosCreado() . PHP_EOL;
-echo "Objetos de Conserje creados: " . Conserje::numeroObjetosCreado() . PHP_EOL;
-echo "Objetos de AlumnoESO creados: " . AlumnoESO::numeroObjetosCreado() . PHP_EOL;
-echo "Objetos de AlumnoBachillerato creados: " . AlumnoBachillerato::numeroObjetosCreado() . PHP_EOL;
-echo "Objetos de AlumnoFP creados: " . AlumnoFP::numeroObjetosCreado() . PHP_EOL;
-echo "Objetos de PersonalLimpieza creados: " . PersonalLimpieza::numeroObjetosCreado() . PHP_EOL;
+foreach($tiposClases as $clase) {
+    echo "Objetos de $clase creados: " . $clase::numeroObjetosCreado() . PHP_EOL;
+}
+
+
+foreach($objetos as $objeto) {
+    echo $objeto->trabajar() . PHP_EOL;
+}
 
 // Pruebas realizadas previamente
 
