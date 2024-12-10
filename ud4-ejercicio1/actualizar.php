@@ -15,7 +15,7 @@ $stmt->execute([$id]);
 $producto = $stmt->fetch();
 
 // Obtener las familias para el select
-$stmt_familias = $pdo->query("SELECT id, nombre FROM familias");
+$stmt_familias = $pdo->query("SELECT cod, nombre FROM familias");
 $familias = $stmt_familias->fetchAll();
 
 // Si el formulario se envía, actualizar el producto
@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $nombre = $_POST['nombre'];
         $nombre_corto = $_POST['nombre_corto'];
-        $precio = $_POST['precio'];
+        $precio = $_POST['pvp'];
         $familia = $_POST['familia'];
         $descripcion = $_POST['descripcion'];
 
         // Actualizar el producto en la base de datos con los nuevos datos intorducidos
-        $stmt = $pdo->prepare("UPDATE productos SET nombre = ?, nombre_corto = ?, precio = ?, familia_id = ?, descripcion = ? WHERE id = ?");
+        $stmt = $pdo->prepare("UPDATE productos SET nombre = ?, nombre_corto = ?, pvp = ?, familia = ?, descripcion = ? WHERE id = ?");
         $stmt->execute([$nombre, $nombre_corto, $precio, $familia, $descripcion, $id]);
 
         header('Location: listado.php');
@@ -60,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="mb-3">
             <label for="precio" class="form-label">Precio</label>
-            <input type="number" step="0.01" class="form-control" id="precio" name="precio" value="<?php echo $producto['precio']; ?>" required>
+            <input type="number" step="0.01" class="form-control" id="precio" name="pvp" value="<?php echo $producto['pvp']; ?>" required>
         </div>
         <div class="mb-3">
             <label for="familia" class="form-label">Familia</label>
             <select class="form-control" id="familia" name="familia" required>
                 <?php foreach ($familias as $familia): ?>
-                    <option value="<?php echo $familia['id']; ?>" <?php if ($familia['id'] == $producto['familia_id']) echo 'selected'; ?>>
+                    <option value="<?php echo $familia['cod']; ?>" <?php if ($familia['cod'] == $producto['familia']) echo 'selected'; ?>>
                         <?php echo $familia['nombre']; ?>
                     </option>
                 <?php endforeach; ?>

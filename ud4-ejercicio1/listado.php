@@ -3,7 +3,7 @@ require_once 'conexion.php';
 
 try {
     // Obtener todos los productos
-    $stmt = $pdo->query("SELECT p.id, p.nombre, f.nombre AS familia FROM productos p JOIN familias f ON p.familia_id = f.id");
+    $stmt = $pdo->query("SELECT p.id, p.nombre, f.nombre AS familia FROM productos p JOIN familias f ON p.familia = f.cod");
     $productos = $stmt->fetchAll();
 } catch (PDOException $e) {
     die("Error al obtener productos: " . $e->getMessage());

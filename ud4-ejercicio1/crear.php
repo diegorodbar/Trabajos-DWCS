@@ -2,7 +2,7 @@
 require_once 'conexion.php';
 
 // Obtener las familias para el select
-$stmt = $pdo->query("SELECT id, nombre FROM familias");
+$stmt = $pdo->query("SELECT cod, nombre FROM familias");
 $familias = $stmt->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $descripcion = $_POST['descripcion'];
 
         // Insertar el nuevo producto en la base de datos
-        $stmt = $pdo->prepare("INSERT INTO productos (nombre, nombre_corto, precio, familia_id, descripcion) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO productos (nombre, nombre_corto, pvp, familia, descripcion) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$nombre, $nombre_corto, $precio, $familia, $descripcion]);
 
         // Redirigir al listado de productos después de guardar
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="familia" class="form-label">Familia</label>
             <select class="form-control" id="familia" name="familia" required>
                 <?php foreach ($familias as $familia): ?>
-                    <option value="<?php echo $familia['id']; ?>"><?php echo $familia['nombre']; ?></option>
+                    <option value="<?php echo $familia['cod']; ?>"><?php echo $familia['nombre']; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

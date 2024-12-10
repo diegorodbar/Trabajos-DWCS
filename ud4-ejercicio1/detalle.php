@@ -11,7 +11,7 @@ $id = $_GET['id'];
 
 try {
     // Obtener los detalles del producto en la base de datos
-    $stmt = $pdo->prepare("SELECT p.*, f.nombre AS familia FROM productos p JOIN familias f ON p.familia_id = f.id WHERE p.id = ?");
+    $stmt = $pdo->prepare("SELECT p.*, f.nombre AS familia FROM productos p JOIN familias f ON p.familia = f.cod WHERE p.id = ?");
     $stmt->execute([$id]);
     $producto = $stmt->fetch();
 
@@ -46,7 +46,7 @@ try {
         </tr>
         <tr>
             <th>Precio</th>
-            <td><?php echo $producto['precio']; ?></td>
+            <td><?php echo $producto['pvp']; ?></td>
         </tr>
         <tr>
             <th>Familia</th>
