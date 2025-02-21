@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jaxon-php/jaxon-core": "^4.8"
+    }
+}
