@@ -1,0 +1,18 @@
+{
+    "name": "diego/tarea06",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Clases\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Diego"
+        }
+    ],
+    "require": {
+        "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4",
+        "php2wsdl/php2wsdl": "^0.7.0"
+    }
+}
